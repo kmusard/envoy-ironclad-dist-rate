@@ -57,7 +57,7 @@ The `envoy-ironclad-dist-rate` project has been designed with multiple security 
    - Network policies are implemented to control the ingress and egress traffic to and from the pods, ensuring that only necessary communication is allowed.
 
 7. **Enforce Restricted Pod Security Policy Level**
-   - The `envoy` namespace is labeled to enforce `restricted` security policies, ensuring that only the most secure pod configurations are permitted. This helps prevent privilege escalation and restricts the capabilities available to the pods. This policy is the most stringent, restricting pods to only the safest configurations. It ensures that pods run with non-root users, use read-only filesystems, and do not have access to sensitive kernel capabilities.
+   - The `envoy-ironclad-dist-rate` namespace is labeled to enforce `restricted` security policies, ensuring that only the most secure pod configurations are permitted. This helps prevent privilege escalation and restricts the capabilities available to the pods. This policy is the most stringent, restricting pods to only the safest configurations. It ensures that pods run with non-root users, use read-only filesystems, and do not have access to sensitive kernel capabilities.
 
 
 By implementing these security measures, the `envoy-ironclad-dist-rate` project ensures a secure and stable environment for handling geocoding requests through Envoy, maintaining both functionality and security best practices.
@@ -172,22 +172,32 @@ set -o history # enable shell history
 
 Envoy returns HTTP error code 429 when limits have been exceeded
 
-- `kubectl logs -f --selector app=curl-loop`
+```bash
+kubectl logs -f --selector app=curl-loop
+```
 
    ![Curl Gif](assets/curl.gif)
 
-- `kubectl logs -f --selector app=envoy`
+```bash
+kubectl logs -f --selector app=envoy
+```
 
 ### Explore Network Traffic
 
-- `cilium hubble port-forward&`
-- `hubble observe --namespace envoy-ironclad-dist-rate --follow`
+```bash
+cilium hubble port-forward&
+```
+```bash
+hubble observe --namespace envoy-ironclad-dist-rate --follow
+```
 
    ![Hubble Gif](assets/hubble.gif)
 
 ### View Envoy Admin Web Interface
 
-- `minikube service envoy-admin --url -n envoy-test`
+```bash
+minikube service envoy-admin --url -n envoy-test`
+```
 
 ![Envoy Admin Gif](assets/envoy-admin.png)
 
