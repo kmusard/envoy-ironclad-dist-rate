@@ -196,7 +196,7 @@ hubble observe --namespace envoy-ironclad-dist-rate --follow
 ### View Envoy Admin Web Interface
 
 ```bash
-minikube service envoy-admin --url -n envoy-test`
+minikube service envoy-admin --url -n envoy-test
 ```
 
 ![Envoy Admin Gif](assets/envoy-admin.png)
