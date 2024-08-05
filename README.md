@@ -62,7 +62,7 @@ The `envoy-ironclad-dist-rate` project has been designed with multiple security 
 
 By implementing these security measures, the `envoy-ironclad-dist-rate` project ensures a secure and stable environment for handling geocoding requests through Envoy, maintaining both functionality and security best practices.
 
-:warning: A production implementation should include Pod-to-Pod TLS encryption. This feature will be added to `envoy-ironclad-dist-rate` in the future :construction:. Please check back for updates!
+:warning: A production implementation should include Pod-to-Pod TLS encryption. This feature will be added to `envoy-ironclad-dist-rate` in the future. Please check back for updates!
 
 
 ## Project Structure
@@ -197,7 +197,7 @@ Envoy returns HTTP error code 429 when limits have been exceeded
 minikube delete
 ```
 
-# Coming :soon:!
+# Coming Soon! :construction:
 
 - Fix Intermittent jq Parsing Error on cURL Output
 - TLS Encrypted Pod-to-Pod Communications
