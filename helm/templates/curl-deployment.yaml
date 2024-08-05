@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curl-loop
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.curl.replicas }}
+  selector:
+    matchLabels:
+      app: curl-loop
+  template:
+    metadata:
+      labels:
+        app: curl-loop
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 3000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: curl-loop
+          image: curl-loop:latest
+          imagePullPolicy: Never
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "50Mi"
+            limits:
+              cpu: "200m"
+              memory: "100Mi"
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          command: ["/bin/bash", "/scripts/curl.sh"]
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+            - name: secret-volume
+              mountPath: /secrets
+              readOnly: true
+      volumes:
+        - name: script-volume
+          configMap:
+            name: curl-script
+        - name: secret-volume
+          secret:
+            secretName: google-api-key

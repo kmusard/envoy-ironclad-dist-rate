@@ -1,0 +1,139 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  #command: /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/verify-setup.sh
+  #command: bash /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/record-setup.sh
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/kmusard/Code/envoy-ironclad-dist-rate
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 120
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 32
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 80
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 8000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Envoy IronClad Distributed Rate Limiter
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 268
+    content: "\e[?1034h$ "
+  - delay: 805
+    content: kubectl logs -f --selector app=curl-loop
+  - delay: 1079
+    content: "\r\n"
+  - delay: 72
+    content: "parse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:19 - Request failed - -89.4008,37.4643 wait 2s\r\nparse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:21 - Request failed - -50.684,-26.3905 wait 4s\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:29 - Request successful - -74.0425,-94.8971 26Q7X453+25\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:32 - Request successful - 29.3791,-9.01134 9XHQ+JF Aoukerda, Morocco\r\nparse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:19 - Request failed - -89.4008,37.4643 wait 1s\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:25 - Request successful - -62.6217,29.1822 3G9F95HJ+8V\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:26 - Request successful - -88.0566,-1.42667 2C3WWHVF+98\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:31 - Request successful - 54.1961,-158.704 936357WW+CC\r\nparse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:36 - Request failed - -73.6161,-136.357 wait 1s\r\nparse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:38 - Request failed - 55.4802,-18.5758 wait 2s\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:40 - Request successful - 5.04682,-80.4702 66QX2GWH+PW\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:45 - Request successful - 37.789980,-122.400860 548 Market St Suite 96966, San Francisco, CA 94104, USA\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:36 - Request failed - -73.6161,-136.357 wait 1s\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:40 - Request successful - 5.04682,-80.4702 66QX2GWH+PW\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:44 - Request successful - 83.7266,-23.7106 C9MRP7GQ+JQ\r\n"
+  - delay: 2208
+    content: "curl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:48 - Request successful - 71.2546,29.878 CG3F7V3H+R5\r\n"
+  - delay: 561
+    content: "parse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:48 - Request failed - 37.789980,-122.400860 wait 1s\r\n"
+  - delay: 2109
+    content: "parse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:50 - Request failed - 37.789980,-122.400860 wait 2s\r\n"
+  - delay: 424
+    content: "parse error: Invalid numeric literal at EOF at line 1, column 18\r\ncurl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:51 - Request failed - 84.5311,-64.5025 wait 1s\r\n"
+  - delay: 4202
+    content: "curl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:55 - Request successful - -17.7237,-10.5296 5CJF7FGC+G5\r\n"
+  - delay: 1772
+    content: "curl-loop-5c77fcc6f5-gch8q - 2024-08-05 15:20:56 - Request successful - 37.789980,-122.400860 548 Market St Suite 96966, San Francisco, CA 94104, USA\r\n"
+  - delay: 510
+    content: "curl-loop-5c77fcc6f5-696gb - 2024-08-05 15:20:57 - Request successful - -67.7944,-70.725 374F674G+62\r\n"
+  - delay: 6000
+    content: "logout\r\n"

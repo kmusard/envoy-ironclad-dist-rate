@@ -1,0 +1,125 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  #command: /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/verify-setup.sh
+  #command: bash /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/record-setup.sh
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/kmusard/Code/envoy-ironclad-dist-rate/assets
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 120
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 40
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 80
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 8000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Envoy IronClad Distributed Rate Limiter
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 388
+    content: "\e[?1034h$ "
+  - delay: 749
+    content: kubectl get all -n kube-system
+  - delay: 671
+    content: "\r\n"
+  - delay: 81
+    content: "NAME                                   READY   STATUS    RESTARTS       AGE\r\npod/cilium-envoy-7mcr4                 1/1     Running   0              177m\r\npod/cilium-operator-7ddc48bb97-t424c   1/1     Running   0              177m\r\npod/cilium-r9qzl                       1/1     Running   0              177m\r\npod/coredns-7db6d8ff4d-h86vd           1/1     Running   0              177m\r\npod/etcd-minikube                      1/1     Running   0              178m\r\npod/hubble-relay-6c7d5d9445-kmmg9      1/1     Running   0              177m\r\npod/kube-apiserver-minikube            1/1     Running   0              178m\r\npod/kube-controller-manager-minikube   1/1     Running   0              178m\r\npod/kube-proxy-4xmhz                   1/1     Running   0              178m\r\npod/kube-scheduler-minikube            1/1     Running   0              178m\r\npod/metrics-server-c59844bb4-zh2fp     1/1     Running   0              178m\r\npod/storage-provisioner                1/1     Running   1 (177m ago)   178m\r\n\r\nNAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE\r\nservice/hubble-peer      ClusterIP   10.98.0.5        <none>        443/TCP                  177m\r\nservice/hubble-relay     ClusterIP   10.102.134.138   <none>        80/TCP                   177m\r\nservice/kube-dns         ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   178m\r\nservice/metrics-server   ClusterIP   10.100.150.148   <none>        443/TCP                  178m\r\n\r\nNAME                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE\r\ndaemonset.apps/cilium         1         1         1       1            1           kubernetes.io/os=linux   177m\r\ndaemonset.apps/cilium-envoy   1         1         1       1            1           kubernetes.io/os=linux   177m\r\ndaemonset.apps/kube-proxy     1         1         1       1            1           kubernetes.io/os=linux   178m\r\n\r\nNAME                              READY   UP-TO-DATE   AVAILABLE   AGE\r\ndeployment.apps/cilium-operator   1/1     1            1           177m\r\ndeployment.apps/coredns           1/1     1            1           178m\r\ndeployment.apps/hubble-relay      1/1     1            1           177m\r\ndeployment.apps/metrics-server    1/1     1            1           178m\r\n\r\nNAME                                         DESIRED   CURRENT   READY   AGE\r\nreplicaset.apps/cilium-operator-7ddc48bb97   1         1         1       177m\r\nreplicaset.apps/coredns-7db6d8ff4d           1         1         1       178m\r\nreplicaset.apps/hubble-relay-6c7d5d9445      1         1         1       177m\r\nreplicaset.apps/metrics-server-c59844bb4     1         1         1       178m\r\n$ "
+  - delay: 6000
+    content: "logout\r\n"

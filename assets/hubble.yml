@@ -1,0 +1,139 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  #command: /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/verify-setup.sh
+  #command: bash /Users/kmusard/Code/envoy-ironclad-dist-rate/assets/record-setup.sh
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/kmusard/Code/envoy-ironclad-dist-rate/assets
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 120
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 32
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 80
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 8000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Envoy IronClad Distributed Rate Limiter
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 253
+    content: "\e[?1034h$ "
+  - delay: 522
+    content: hubble observe --follow --namespace envoy-ironclad-dist-rate
+  - delay: 423
+    content: "\r\n"
+  - delay: 1576
+    content: "Aug  5 15:27:02.965: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m52252\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\nAug  5 15:27:02.965: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m52252\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\n"
+  - delay: 1065
+    content: "Aug  5 15:27:04.539: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m48864\e[0m\e[0m \e[35m(ID:47264)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\n"
+  - delay: 1016
+    content: "Aug  5 15:27:04.540: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m48864\e[0m\e[0m \e[35m(ID:47264)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:05.554: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m50319\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (UDP)\r\nAug  5 15:27:05.554: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m50319\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:05.554: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m50319\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN, ACK)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\nAug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\n"
+  - delay: 2616
+    content: "Aug  5 15:27:05.555: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m59770\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:08.168: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m43118\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (UDP)\r\nAug  5 15:27:08.168: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m43118\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:08.170: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m43118\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:08.171: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:08.171: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:08.171: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN, ACK)\r\nAug  5 15:27:08.171: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:08.171: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:08.172: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:08.173: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\nAug  5 15:27:08.173: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\n"
+  - delay: 1574
+    content: "Aug  5 15:27:08.173: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-gch8q:\e[33m48426\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:09.549: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m59868\e[0m\e[0m \e[35m(ID:47264)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:09.550: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m59868\e[0m\e[0m \e[35m(ID:47264)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:09.667: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m51585\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (UDP)\r\nAug  5 15:27:09.667: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m51585\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m51585\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN, ACK)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:09.668: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:09.669: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m51696\e[0m\e[0m \e[35m(ID:47264)\e[0m -> \e[36m172.253.122.95:\e[33m443\e[0m\e[0m \e[35m(world)\e[0m to-stack \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:09.669: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m51696\e[0m\e[0m \e[35m(ID:47264)\e[0m <- \e[36m172.253.122.95:\e[33m443\e[0m\e[0m \e[35m(world)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:09.746: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:09.746: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\nAug  5 15:27:09.746: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\n"
+  - delay: 2178
+    content: "Aug  5 15:27:09.746: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36656\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:11.853: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m55625\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (UDP)\r\nAug  5 15:27:11.853: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m55625\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m55625\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36mkube-system/coredns-7db6d8ff4d-h86vd:\e[33m53\e[0m\e[0m \e[35m(ID:28800)\e[0m to-endpoint \e[32mFORWARDED\e[0m (UDP)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m policy-verdict:L3-L4 EGRESS \e[32mALLOWED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: SYN, ACK)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:11.854: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:11.855: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m37762\e[0m\e[0m \e[35m(ID:47264)\e[0m -> \e[36m172.253.115.95:\e[33m443\e[0m\e[0m \e[35m(world)\e[0m to-stack \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:11.855: \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m37762\e[0m\e[0m \e[35m(ID:47264)\e[0m <- \e[36m172.253.115.95:\e[33m443\e[0m\e[0m \e[35m(world)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK)\r\nAug  5 15:27:11.920: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, PSH)\r\nAug  5 15:27:11.932: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m -> \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\nAug  5 15:27:11.932: \e[36menvoy-ironclad-dist-rate/curl-loop-5c77fcc6f5-696gb:\e[33m36660\e[0m\e[0m \e[35m(ID:14248)\e[0m <- \e[36menvoy-ironclad-dist-rate/envoy-688787cbf7-7f6w9:\e[33m8080\e[0m\e[0m \e[35m(ID:47264)\e[0m to-endpoint \e[32mFORWARDED\e[0m (TCP Flags: ACK, FIN)\r\n"
+  - delay: 700
+    content: ^C
+  - delay: 5
+    content: '$ '
+  - delay: 914
+    content: "logout\r\n"

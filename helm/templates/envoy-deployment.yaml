@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envoy
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: envoy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: envoy
+  template:
+    metadata:
+      labels:
+        app: envoy
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 3000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: envoy
+          image: envoyproxy/envoy@sha256:de895988c1e334e28b8e4b7280685a718c51f7516843c4b13cf451c1fa8f02ad
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          ports:
+            - containerPort: 8080
+            - containerPort: 8001
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          command: ["envoy"]
+          args:
+            - "-c"
+            - "/envoy/envoy.yaml"
+            - "--log-level"
+            - debug
+            - "--log-path"
+            # read-only file system
+            - "/dev/stdout"
+          volumeMounts:
+            - name: envoy-config
+              mountPath: /envoy
+      volumes:
+        - name: envoy-config
+          configMap:
+            name: envoy-config

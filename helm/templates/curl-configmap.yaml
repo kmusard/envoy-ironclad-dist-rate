@@ -1,0 +1,91 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: curl-script
+  namespace: {{ .Release.Namespace }}
+data:
+  curl.sh: |
+    #!/bin/bash -Eeuo -o pipefail
+    # curl Google Geocode API through envoy proxy
+    # randomize latlng and add randomized delay at start
+    # MY_POD_NAME set in deployment template
+
+    API_KEY=$(cat /secrets/api-key)
+    BASE_URL="http://envoy:8080/maps/api/geocode/json"
+    SLEEP={{ .Values.curl.sleep }}
+    MAX_SLEEP={{ .Values.curl.maxSleep }}
+    JITTER={{ .Values.curl.jitter }}
+    STATIC_FREQUENCY={{ .Values.curl.staticFrequency }}
+    STATIC_LATLNG="37.789980,-122.400860"
+    COUNT=1
+
+    generate_random_latlng() {
+        read LAT LNG < <(awk 'BEGIN {
+            srand();
+            min_lat = -90; max_lat = 90;
+            min_lng = -180; max_lng = 180;
+            lat = min_lat + rand() * (max_lat - min_lat);
+            lng = min_lng + rand() * (max_lng - min_lng);
+            print lat, lng;
+        }')
+        echo "$LAT,$LNG"
+    }
+
+    generate_random_delay() {
+        echo $((RANDOM % (JITTER + 1)))
+    }
+
+    while true; do
+        # Random delay at the start of each iteration
+        RANDOM_DELAY=$(generate_random_delay)
+        sleep $RANDOM_DELAY
+
+        # Determine if this execution should use the static latlng
+        if (( COUNT % STATIC_FREQUENCY == 0 )); then
+          LATLNG=$STATIC_LATLNG
+        else
+          LATLNG=$(generate_random_latlng)
+        fi
+
+        DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+        HEADERS=(
+            "-HCache-Control: 3600, must-revalidate"
+            "-HPragma: no-cache"
+        )
+
+        FULL_URL="${BASE_URL}?latlng=$LATLNG&key=${API_KEY}"
+
+        RESPONSE=$(
+            curl -s \
+                "${HEADERS[@]}" "$FULL_URL" \
+                | jq -r '.results[0].formatted_address | tostring'
+        )
+
+        if [ $? -eq 0 ] && [ "$RESPONSE" != "null" ]; then
+            MSG=(
+                "$MY_POD_NAME - $DATE - Request successful - $LATLNG"
+                "$RESPONSE"
+            )
+            echo "${MSG[@]}"
+            # Reset sleep time on success
+            SLEEP={{ .Values.curl.sleep }}
+        else
+            MSG=(
+                "$MY_POD_NAME - $DATE - Request failed - $LATLNG"
+                "wait ${SLEEP}s"
+            )
+            echo "${MSG[@]}"
+            sleep $SLEEP
+            if [ $SLEEP -lt $MAX_SLEEP ]; then
+                SLEEP=$((SLEEP * 2))
+                if [ $SLEEP -gt $MAX_SLEEP ]; then
+                  SLEEP=$MAX_SLEEP
+                fi
+            fi
+            continue
+        fi
+        (( COUNT++ ))
+        sleep $SLEEP
+    done

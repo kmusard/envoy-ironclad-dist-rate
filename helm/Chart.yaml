@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+name: envoy-ironclad-dist-rate
+version: 0.0.1
+description: Envoy IronClad Distributed Rate Limiter
+keywords:
+  - helm
+  - chart
+  - envoy
+  - Google Geocoding API
+maintainers:
+  - name: Kris Musard
+appVersion: 0.0.1

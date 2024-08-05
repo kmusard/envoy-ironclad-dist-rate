@@ -1,0 +1,16 @@
+curl:
+  sleep: 1
+  maxSleep: 10
+  jitter: 4
+  staticFrequency: 6
+  staticLatlng: "37.789980,-122.400860"
+  googleApiKey: "" # Do not check in your API key!
+  maxAge: 3600
+  replicas: 2
+
+envoy:
+  image: "envoyproxy/envoy@sha256:de895988c1e334e28b8e4b7280685a718c51f7516843c4b13cf451c1fa8f02ad"
+  logLevel: "debug"
+  maxTokens: 5
+  tokensPerFill: 5
+  fillInterval: "15s"
