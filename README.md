@@ -1,18 +1,5 @@
 # Envoy IronClad Distributed Rate Limiter
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Architecture and Components](#architecture-and-components)
-  - [Envoy Proxy](#envoy-proxy)
-  - [Curl Script](#curl-script)
-  - [Kubernetes Infrastructure](#kubernetes-infrastructure)
-  - [Geocode API](#geocode-api)
-- [Security](#security)
-  - [Run Container as a Non-Root User](#run-container-as-a-non-root-user)
-  - [Mount Filesystem Read-Only](#mount-filesystem-read-only)
-  - [Log to /dev/stdout](#log-to-devstdout)
-
 ## Introduction
 
 Welcome to `envoy-ironclad-dist-rate`! This project explores the challenge of managing a background process workload that calls an external API with a strict rate limit.  Exceeding API rate limits can lead to lockout periods and service outages, making it crucial to control egress to these APIs effectively.
