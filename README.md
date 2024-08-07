@@ -1,5 +1,18 @@
 # Envoy IronClad Distributed Rate Limiter
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Architecture and Components](#architecture-and-components)
+  - [Envoy Proxy](#envoy-proxy)
+  - [Curl Script](#curl-script)
+  - [Kubernetes Infrastructure](#kubernetes-infrastructure)
+  - [Geocode API](#geocode-api)
+- [Security](#security)
+  - [Run Container as a Non-Root User](#run-container-as-a-non-root-user)
+  - [Mount Filesystem Read-Only](#mount-filesystem-read-only)
+  - [Log to /dev/stdout](#log-to-devstdout)
+
 ## Introduction
 
 Welcome to `envoy-ironclad-dist-rate`! This project explores the challenge of managing a background process workload that calls an external API with a strict rate limit.  Exceeding API rate limits can lead to lockout periods and service outages, making it crucial to control egress to these APIs effectively.
@@ -10,15 +23,14 @@ We will use Google’s Geocoding API for demonstration purposes.
 
 ## Architecture and Components
 
-1. **Envoy Proxy**: Serves as the central rate limiting and caching mechanism for external APIs. It's configured to handle API requests and enforce rate limits, ensuring the total outbound rate of requests does not exceed external restrictions. Services within the environment call an endpoint configured on Envoy which either returns HTTP error code 429 when limits have been exceeded or proxies the request to the downstream API. 
+1. **Envoy Proxy**: Serves as the central rate limiting and caching mechanism for external APIs. It's configured to handle API requests and enforce rate limits, ensuring the total outbound rate of requests does not exceed external restrictions. Services within the environment call an endpoint configured on Envoy which either returns HTTP error code 429 when limits have been exceeded or proxies the request to the downstream API.
 
     [Envoy Proxy](https://www.envoyproxy.io/)
-
 
 2. **Curl Script**: Runs within a Kubernetes deployment, making periodic API requests through the Envoy proxy. It includes logic to randomize request intervals and perform exponential backoff when API rate limits are exceeded. The included helm chart provides parameters for controlling this behaviour.
 
     [cURL GitHub](https://github.com/curl/curl)
-    
+
     [jq GitHub](https://github.com/stedolan/jq)
 
 3. **Kubernetes Infrastructure**: Utilizes multiple Kubernetes resources, including ConfigMaps, Deployments, Namespaces, NetworkPolicies, Secrets, and Services, to manage and orchestrate components.
@@ -52,18 +64,15 @@ The `envoy-ironclad-dist-rate` project has been designed with multiple security 
    - To follow the principle of least privilege, all unnecessary Linux kernel capabilities are dropped.
    - [Linux Capabilities - man7.org](https://man7.org/linux/man-pages/man7/capabilities.7.html)
 
-
 6. **Enable Secure Network Policies**
    - Network policies are implemented to control the ingress and egress traffic to and from the pods, ensuring that only necessary communication is allowed.
 
 7. **Enforce Restricted Pod Security Policy Level**
    - The `envoy-ironclad-dist-rate` namespace is labeled to enforce `restricted` security policies, ensuring that only the most secure pod configurations are permitted. This helps prevent privilege escalation and restricts the capabilities available to the pods. This policy is the most stringent, restricting pods to only the safest configurations. It ensures that pods run with non-root users, use read-only filesystems, and do not have access to sensitive kernel capabilities.
 
-
 By implementing these security measures, the `envoy-ironclad-dist-rate` project ensures a secure and stable environment for handling geocoding requests through Envoy, maintaining both functionality and security best practices.
 
 :warning: A production implementation should include Pod-to-Pod TLS encryption. This feature will be added to `envoy-ironclad-dist-rate` in the future. Please check back for updates!
-
 
 ## Project Structure
 
@@ -117,13 +126,14 @@ Verify the setup
 ```bash
 kubectl get all --all-namespaces
 ```
+
 The output should be similar to below
 
 ![Verify Gif](assets/verify.gif)
 
 ## Envoy Ironclad Distributed Rate Limiter Helm Chart
 
-This Helm chart deploys an Envoy proxy along with two pods runing a custom script utilizing cURL to demonstrate Envoy’s rate limiting and caching capabilities aimed at efficiently interfacing with the Google reverse geocoding API.
+This Helm chart deploys an Envoy proxy along with two pods running a custom script utilizing cURL to demonstrate Envoy’s rate limiting and caching capabilities aimed at efficiently interfacing with the Google reverse geocoding API.
 
 ## Configuration Parameters
 
@@ -150,6 +160,7 @@ Assuming you have kubectl connectivity to your cluster, the helm chart can be de
 ```bash
 set +o history # disable shell history
 ```
+
 ```bash
 helm install envoy-ironclad-dist-rate ./helm/envoy-ironclad-dist-rate --namespace envoy-ironclad-dist-rate --set curl.googleApiKey=CLEARTEXT
 ```
@@ -166,6 +177,7 @@ TEST SUITE: None
 ```bash
 set -o history # enable shell history
 ```
+
 ## Activities
 
 ### View Pod Logs and Observe API Calls
@@ -187,6 +199,7 @@ kubectl logs -f --selector app=envoy
 ```bash
 cilium hubble port-forward&
 ```
+
 ```bash
 hubble observe --namespace envoy-ironclad-dist-rate --follow
 ```
@@ -207,7 +220,7 @@ minikube service envoy-admin --url -n envoy-test
 minikube delete
 ```
 
-# Coming Soon! :construction:
+## Coming Soon! :construction:
 
 - Fix Intermittent jq Parsing Error on cURL Output
 - TLS Encrypted Pod-to-Pod Communications
